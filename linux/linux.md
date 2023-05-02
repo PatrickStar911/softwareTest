@@ -865,3 +865,208 @@ chgrp newgroup 文件/目录 【改变所在组】
 请将/home/kkk目录下所有的文件和目录的所在组修改成shaolin(少林)
 
 > chgrp -R shaolin /home/kkk
+
+## 警察与土匪案例
+
+![image-20230501202809651](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230501202809651.png)
+
+## crond 任务调度
+
+crontab 进行 定时任务的设置
+
+- 概述
+
+任务调度：是指系统在某个事件执行的特定的命令或程序。
+
+任务调度分类：1.系统工作：有些重要的工作必须周而复始地执行。如病毒扫描
+
+个别用户工作：个别用户可能希望执行某些程序，比如mysql数据库的备份
+
+- 基本语法
+
+crontab [选项]
+
+- 常用选项
+
+> -e		编辑crontab定时任务
+>
+> -l		查询crontab任务
+>
+> -r		删除当前用户所有的crontab任务
+
+![image-20230502171412770](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502171412770.png)
+
+![image-20230502171731458](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502171731458.png)
+
+### 执行案例
+
+![image-20230502172105490](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502172105490.png)
+
+- 应用实例
+
+案例1：每隔1分钟，就将当前的日期信息，追加到 /tmp/mydate 文件中
+
+>  */1 * * * * date >> /tmp/mydate
+
+案例2：每隔1分钟，将当前日期和日历都追加到 /home/mycal 文件中
+
+> 步骤：
+>
+> 1. vim /home/my.sh 写入内容 date >> /home/mycal 和 cal >> /home/mycal
+> 2. 给 my.sh 增加执行权限，chmod u+x /home/my.sh
+> 3. crontab -e 增加 */1 * * * * /home/my.sh		(/home/my.sh是要执行的脚本)
+
+案例3：每天凌晨2:00 将mysql数据库 tetsdb，备份到文件中。提示：指令为
+
+mysqldump -u root -p密码 数据库 >> /home/db.bak
+
+> 步骤：
+>
+> 1. crontab -e
+> 2. 0 2 * * * mysqldump -u root -proot testdb > /home/db.bak
+
+- crond 相关指令
+
+> crontab -r		终止任务调度
+>
+> crontab -l		列出当前有哪些任务调度
+>
+> service crond restart	[重启任务调度]
+
+### 脚本流程图
+
+![image-20230502184536416](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502184536416.png)
+
+
+
+## at定时任务
+
+- 基本介绍
+
+1. at命令是一次性定时计划任务，at的守护进程atd会以后台模式运行，检查作业队列来运行
+2. 默认情况下，atd守护进程每60秒检查作业队列，有作业时，会检查作业运行时间，如果时间与当前时间匹配，则运行此作业。
+3. at命令是一次性定时计划任务，执行完一个任务后不再执行此任务了
+4. 在使用at命令的时候，一定要保证atd进程的启动，可以使用相关指令来查看
+
+> 指令：ps -ef 用于检测当前正在运行的程序有哪些
+>
+> ps -ef | grep atd 用于检测atd程序是否在运行 
+
+- at命令格式
+
+> at [选项] [时间]
+>
+> Ctrl + D 结束at命令的输入
+
+- at命令选项
+
+> -m	当指定的任务被完成后，将给用户发送邮件，即使没有标准输出
+>
+> -I		atq的别名
+>
+> -d		atrm的别名
+>
+> -v		显示任务将被执行的时间
+>
+> -c		打印任务的内容到标准输出
+>
+> -V		显示版本信息
+>
+> -q <队列>		使用指定的队列
+>
+> -f <文件>		从指定文件读入任务而不是从标准输入读入
+>
+> -t <时间参数>	以时间参数的形式提交要运行的任务
+
+- at时间的指定
+
+![image-20230502214323877](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502214323877.png)
+
+- 应用案例
+
+![image-20230502214626321](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502214626321.png)
+
+案例1：
+
+> at 5pm + 2 days
+>
+> at> /bin/ls /home
+>
+> ctrl + D (输入两次)
+
+案例2：
+
+> atq
+
+案例3：
+
+> at 5:00pm tomorrow
+>
+> at> date > /root/date100.log
+
+案例4：
+
+> at now + 2 minutes
+>
+> at> time > /root/date200.log
+
+案例5：
+
+atrm 3  拿掉3号任务
+
+## Linux分区
+
+### 原理介绍
+
+1. Linux来说无论有几个分区，分给哪一个目录使用，它归根结底就只有一个根目录，一个独立且唯一的文件结构，Linux中
+
+每个分区都是用来组成整个文件系统的一部分。
+
+2. Linux采用了一种叫“载入”的处理方法，它整个文件系统中包含了一整套的文件和目录，且**将一个分区和一个目录联系起来**，这时要载入的一个分区将使它的存储空间在一个目录下获得。
+3. 示意图
+
+![image-20230503002539649](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503002539649.png)
+
+### 硬盘说明
+
+![image-20230503002701709](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503002701709.png)
+
+- 查看所有设备挂载情况
+
+命令：lsblk 或者 lsblk -f
+
+![image-20230503003633444](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503003633444.png)
+
+### 挂载的经典案例
+
+- 说明：
+
+下面我们以增加一块硬盘为例来熟悉下磁盘的相关指令和深入理解磁盘分区、挂载、卸载的概念。
+
+- 如何增加一块硬盘
+
+1. 虚拟机添加硬盘
+
+![image-20230503004023791](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503004023791.png)
+
+2. 分区
+
+![image-20230503004410724](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503004410724.png)
+
+3. 格式化
+
+![image-20230503004751041](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503004751041.png)
+
+4. 挂载
+
+> mkdir /newdisk
+>
+> mount /dev/sdb1 /newdisk/
+
+注：命令行挂载的方式 只要重启就会挂载失效
+
+5. 设置可以自动挂载
+
+![image-20230503005535764](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503005535764.png)
+
+vim /etc/fstab 去添加sdb1即可实现永久挂载
