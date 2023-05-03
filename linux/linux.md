@@ -28,9 +28,9 @@
 
 - 快捷键使用练习(以下操作需要在一般模式下才能使用 编辑模式无效)
 
-![image-20230418172145764](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230418172145764.png)
+![image-20230503220225683](./assets/image-20230503220225683.png)
 
-<img src="C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230418174219496.png" alt="image-20230418174219496" style="zoom:80%;" />
+![image-20230503220214423](./assets/image-20230503220214423.png)
 
 ## 用户管理
 
@@ -191,25 +191,25 @@ useradd -g wudang zwj //增加一个用户，同时将这个用户放到wudang�
 
 ## 运行级别
 
-![image-20230421151014315](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421151014315.png)
+![image-20230503220208669](./assets/image-20230503220208669.png)
 
 ### 指定运行级别
 
-![image-20230421151431587](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421151431587.png![image-20230421151511295](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421151511295.png)
+![image-20230503220156479](./assets/image-20230503220156479.png)
 
 ## 找回root密码
 
-![image-20230421152240249](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421152240249.png)
+![image-20230503220151368](./assets/image-20230503220151368.png)
 
-![image-20230421152504176](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421152504176.png)
+![image-20230503220146401](./assets/image-20230503220146401.png)
 
-![image-20230421152713600](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421152713600.png)
+![image-20230503220133982](./assets/image-20230503220133982.png)
 
 
 
 ## 帮助指令
 
-![image-20230421153135603](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421153135603.png)
+![image-20230503220123717](./assets/image-20230503220123717.png)
 
 > 注：隐藏的文件是以 . 开头的，如果创建一个隐藏文件 则以 . 开头即可
 
@@ -217,7 +217,7 @@ useradd -g wudang zwj //增加一个用户，同时将这个用户放到wudang�
 
 ### cd指令
 
-![image-20230421163929873](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230421163929873.png)
+![image-20230503220117808](./assets/image-20230503220117808.png)
 
 > 使用相对路径到/root目录， 比如当前绝对路径为/home/tom 则使用`cd../../root`即可到/root目录
 
@@ -381,11 +381,11 @@ cat [选项] 要查看的文件
 
 `cat -n /etc/profile | more [进行交互]`
 
-![image-20230429081149279](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230429081149279.png)
+![image-20230503220110300](./assets/image-20230503220110300.png)
 
 ### less指令
 
-![image-20230429093200042](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230429093200042.png)
+![image-20230503220102637](./assets/image-20230503220102637.png)
 
 
 
@@ -423,19 +423,19 @@ head -n 5 /etc/profile
 
 ### tail指令
 
-![image-20230429093801015](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230429093801015.png)
+![image-20230503220052208](./assets/image-20230503220052208.png)
 
 > 监控指令：tail -f /home/mydate.txt
 
 ### > 指令 和 >> 指令
 
-![image-20230429094325529](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230429094325529.png)
+![image-20230503220047788](./assets/image-20230503220047788.png)
 
 > 注意：> 表示覆盖操作，>> 表示追加操作，不会覆盖目标文件，只会在文件末尾追加
 
 ### 	ln 指令
 
-![image-20230429145814541](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230429145814541.png)
+![image-20230503220041896](./assets/image-20230503220041896.png)
 
 
 
@@ -608,7 +608,7 @@ gunzip /home/hello.txt.gz
 
 ### zip/unzip 指令
 
-![image-20230430111903976](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230430111903976.png)
+![image-20230503220032374](./assets/image-20230503220032374.png)
 
 案例1：将/home下的 所有文件/文件夹进行压缩成 myhome.zip
 
@@ -622,7 +622,7 @@ gunzip /home/hello.txt.gz
 
 ### tar 指令
 
-![image-20230430113526197](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230430113526197.png)
+![image-20230503220026643](./assets/image-20230503220026643.png)
 
 案例1：压缩多个文件，将/home/pig.txt 和 /home/cat.txt 压缩成pc.tar.gz
 
@@ -660,7 +660,7 @@ gunzip /home/hello.txt.gz
 
  示意图：
 
-![image-20230430155730249](C:\Users\Administrator.DESKTOP-KQRCAUT\AppData\Roaming\Typora\typora-user-images\image-20230430155730249.png)
+![image-20230503220019013](./assets/image-20230503220019013.png)
 
 a.txt是tom创建的，那么tom是a.txt的所有者，tom是属于组1的，所以组1里面的成员对a.txt也有一定的权限
 
@@ -868,7 +868,7 @@ chgrp newgroup 文件/目录 【改变所在组】
 
 ## 警察与土匪案例
 
-![image-20230501202809651](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230501202809651.png)
+![image-20230503220008761](./assets/image-20230503220008761.png)
 
 ## crond 任务调度
 
@@ -894,13 +894,13 @@ crontab [选项]
 >
 > -r		删除当前用户所有的crontab任务
 
-![image-20230502171412770](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502171412770.png)
+![image-20230503220000803](./assets/image-20230503220000803.png)
 
-![image-20230502171731458](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502171731458.png)
+![image-20230503215953223](./assets/image-20230503215953223.png)
 
 ### 执行案例
 
-![image-20230502172105490](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502172105490.png)
+![image-20230503215948101](./assets/image-20230503215948101.png)
 
 - 应用实例
 
@@ -935,7 +935,7 @@ mysqldump -u root -p密码 数据库 >> /home/db.bak
 
 ### 脚本流程图
 
-![image-20230502184536416](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502184536416.png)
+![image-20230503215941373](./assets/image-20230503215941373.png)
 
 
 
@@ -980,11 +980,11 @@ mysqldump -u root -p密码 数据库 >> /home/db.bak
 
 - at时间的指定
 
-![image-20230502214323877](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502214323877.png)
+![image-20230503215930590](./assets/image-20230503215930590.png)
 
 - 应用案例
 
-![image-20230502214626321](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230502214626321.png)
+![image-20230503215917731](./assets/image-20230503215917731.png)
 
 案例1：
 
@@ -1025,17 +1025,17 @@ atrm 3  拿掉3号任务
 2. Linux采用了一种叫“载入”的处理方法，它整个文件系统中包含了一整套的文件和目录，且**将一个分区和一个目录联系起来**，这时要载入的一个分区将使它的存储空间在一个目录下获得。
 3. 示意图
 
-![image-20230503002539649](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503002539649.png)
+![image-20230503215911604](./assets/image-20230503215911604.png)
 
 ### 硬盘说明
 
-![image-20230503002701709](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503002701709.png)
+![image-20230503215902722](./assets/image-20230503215902722.png)
 
 - 查看所有设备挂载情况
 
 命令：lsblk 或者 lsblk -f
 
-![image-20230503003633444](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503003633444.png)
+![image-20230503215853008](./assets/image-20230503215853008.png)
 
 ### 挂载的经典案例
 
@@ -1047,15 +1047,15 @@ atrm 3  拿掉3号任务
 
 1. 虚拟机添加硬盘
 
-![image-20230503004023791](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503004023791.png)
+![image-20230503215844407](./assets/image-20230503215844407.png)
 
 2. 分区
 
-![image-20230503004410724](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503004410724.png)
+![image-20230503215833828](./assets/image-20230503215833828.png)
 
 3. 格式化
 
-![image-20230503004751041](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503004751041.png)
+![image-20230503215822534](./assets/image-20230503215822534.png)
 
 4. 挂载
 
@@ -1067,7 +1067,7 @@ atrm 3  拿掉3号任务
 
 5. 设置可以自动挂载
 
-![image-20230503005535764](C:\Users\Administrator.DESKTOP-KQRCAUT\Desktop\软件测试\linux\imgs\image-20230503005535764.png)
+![image-20230503215809446](./assets/image-20230503215809446.png)
 
 vim /etc/fstab 去添加sdb1即可实现永久挂载
 
@@ -1124,3 +1124,51 @@ vim /etc/fstab 去添加sdb1即可实现永久挂载
 - 原理图
 
 ![image-20230503144421088](./assets/image-20230503144421088.png)
+
+## linux网路环境配置
+
+- 第一种方法(自动获取)：
+
+![image-20230503233853506](./assets/image-20230503233853506.png)
+
+- 第二种方法(指定ip)
+
+ ![image-20230503234148003](./assets/image-20230503234148003.png)
+
+> 注：还需要改一下vm虚拟机的Ip地址 使其网段与linux虚拟机保持一致
+
+- 重启网络服务或者重启系统生效
+
+service network restart 、 reboot
+
+## 设置主机名和hosts映射
+
+- 设置主机名
+
+1. 为了方便记忆，可以给linux系统设置主机名，也可以根据需要修改主机名
+2. 指令hostname：查看主机名
+3. 修改文件在/etc/hostname 指定
+4. 修改后，重启生效
+
+- 设置hosts映射
+
+思考：如何通过 主机名能够找到(比如ping)某个linux系统？
+
+![image-20230503235954696](./assets/image-20230503235954696.png)
+
+## 主机名解析过程分析(Hosts、DNS)
+
+![image-20230504000657444](./assets/image-20230504000657444.png)
+
+- 应用实例：用户在浏览器输入了www.baidu.com![image-20230504000922125](./assets/image-20230504000922125.png)
+
+简单描述：
+
+① 先看浏览器缓存有没有该域名的解析地址，没有走②
+
+② 看电脑本地DNS缓存，如果没有走③
+
+③ 看系统中hosts文件中有没有对应的IP映射，没有走④
+
+④ 去互联网的DNS服务器查找解析，**找不到则返回域名不存在**
+
