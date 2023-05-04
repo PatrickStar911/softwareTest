@@ -1172,3 +1172,198 @@ service network restart 、 reboot
 
 ④ 去互联网的DNS服务器查找解析，**找不到则返回域名不存在**
 
+## Linux进程
+
+### 基本介绍
+
+1. 在LINUX中，每个执行的程序都称为一个进程。每一个进程都分配一个ID号(pid,进程号)
+2. 每个进程都可能以两种方式存在的。**前台与后台**，所谓前台进程就是用户目前的屏幕上可以进行操作的。
+
+后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。
+
+3. 一般系统的服务都是以后天进程的方式存在，而且都会常驻在系统中。知道关机才结束。
+
+### 显示系统执行的进程
+
+- 基本介绍
+
+ps命令是用来查看目前系统中，有哪些正在执行，以及它们执行的情况，可以不加任何参数
+
+![image-20230504162049183](./assets/image-20230504162049183.png)
+
+![image-20230504162534819](./assets/image-20230504162534819.png)
+
+- ps详解
+
+![image-20230504162602068](./assets/image-20230504162602068.png)
+
+- 应用实例
+
+![image-20230504162950457](./assets/image-20230504162950457.png)
+
+### 终止进程kill和killall
+
+![image-20230504165110520](./assets/image-20230504165110520.png)
+
+案例1：踢掉某个非法登录用户
+
+> 1.先使用tom登录
+>
+> 2.使用root用户，输入指令 ps -aux | grep sshd 查看tom的进程id
+>
+> 3.kill pid
+
+案例2：
+
+> kill sshd对于的进程；
+>
+> 重启指令： /bin/systemctl start sshd.service
+
+案例3：终止多个gedit
+
+> killall gedit
+
+案例4：强制杀掉一个终端
+
+>  查看终端进程 ps -aux | grep bash
+>
+> kill -9 进程号
+
+### 查看进程树
+
+![image-20230504171643818](./assets/image-20230504171643818.png)
+
+## 服务管理
+
+### 介绍
+
+服务(service)本质就是进程，但是是运行在后台的，通常都会监听某个端口，等待其他程序的请求，比如(mysql,sshd 防火墙等)，因此我们又称为守护进程
+
+是Linux中非常重要的知识点。
+
+### 客户端使用linux服务的原理图
+
+![image-20230504194748236](./assets/image-20230504194748236.png)
+
+### service管理指令
+
+1. service 服务名 [start | stop | restart |reload | status]
+
+2. 在Centos7.0后 **很多服务不再使用service**，而是 sysytemctl
+3. service指令管理的服务在 /etc/init.d 查看
+
+![image-20230504194120932](./assets/image-20230504194120932.png)
+
+### service管理指令案例
+
+请使用service指令，查看，关闭，启动network [注意：在虚拟系统演示，因为网络连接会关闭]
+
+### 查看服务名
+
+方式1：使用setup -> 系统服务 就可以看到全部。
+
+
+
+方式2：/etc/init.d 看到service指令管理的服务
+
+ls -l /etc/init.d
+
+![image-20230504202035240](./assets/image-20230504202035240.png)
+
+> 注：其中*表示自启动，按空格可以选择开启或关闭
+
+### 服务的运行级别
+
+- Linux系统有7种运行级别：常用的是级别3和5
+
+![image-20230504202241324](./assets/image-20230504202241324.png)
+
+### Centos7后运行级别说明
+
+![image-20230504202532234](./assets/image-20230504202532234.png)
+
+### chkconfig指令
+
+- 介绍
+
+1. 通过chkconfig 命令可以给服务的各个运行级别设置自 启动/关闭
+2. chkconfig 指令管理的服务在 /etc/init.d 查看
+3. 注意：Centos7.0 后，很多服务**使用systemctl** 管理
+
+
+
+- chkconfig基本语法
+
+① 查看服务 chkconfig  --list [| grep xxx]
+
+② chkconfig 服务名  --list
+
+③ chkconfig --level 5 服务名 on/off
+
+
+
+- 案例演示：对network服务 进行各种操作，把network 在3运行级别，关闭自启动
+
+chkconfig --level 3 network off
+
+chkconfig --level 3 network on
+
+> 使用细节：chkconfig重新设置服务后自启动或关闭，需要重启机器reboot生效
+
+### systemctl 管理指令
+
+1. 基本语法：systemctl [start | stop |restart | status] 服务名
+2. systemctl指令管理的服务在 /usr/lib/systemd/system 查看
+
+### systemctl设置服务的自启动状态
+
+1. systemctl list-unit-files [ | grep 服务名] (查看服务开机启动状态，grep 可以进行过滤)
+2. sytstemctl enable 服务名 (设置服务开机启动)
+3. sytstemctl disbale 服务名 (关闭服务开机启动)
+4. sytstemctl is-enabled 服务名 (查询某个服务是否是自启动的)
+
+
+
+- 应用案例
+
+查看当前防火墙的状况，关闭防火墙和重启防火墙
+
+> systemctl stop firewalld
+>
+> systemctl start firewalld
+
+
+
+> 细节：
+>
+> 1. 关闭或启用防火墙后，立即生效。 [telnet 测试 某个端口即可]
+> 2. 这种方式只是临时生效，当重启系统后，还是回归以前对服务的设置
+> 3. 如果希望设置某个服务自启动或关闭永久生效，要使用 sytstemctl [enable|disable] 服务名.
+
+### 打开或者关闭指定端口
+
+在真正的生产环境，往往需要将防火墙打开，但问题来了，如果我们把防火墙打开，那么外部请求数据包就不能跟服务器监听端口通讯。
+
+这时，需要打开指定的端口。比如80、22、8080等，这个又怎么做呢？
+
+
+
+### firewall 指令
+
+![image-20230504234843518](./assets/image-20230504234843518.png)
+
+- 应用案例
+
+1. 启用防火墙，测试111端口是否能 telnet
+
+   > systemctl start firewalld
+
+2. 开放111端口
+
+   > firewall-cmd --permanent --add-port=111/tcp
+   >
+   > firewall-cmd --reload
+
+3. 再次关闭111端口
+
+   > firewall-cmd --permanent --remove-port=111/tcp
